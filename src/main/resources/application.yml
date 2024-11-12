@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: springBatch
+  profiles:
+    active: mysql
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/springbatch
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: true
+      name: {job.name}
+
