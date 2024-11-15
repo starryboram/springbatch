@@ -32,7 +32,10 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+#      table-prefix: SYSTEM_
     job:
+      names: ${job.name:NONE}
       enabled: true
-      name: {job.name}
+
+
 
